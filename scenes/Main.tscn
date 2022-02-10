@@ -78,7 +78,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 480, 453 )
+position = Vector2( 496, 440 )
 z_index = 2
 
 [node name="Plant" parent="." instance=ExtResource( 5 )]
@@ -124,4 +124,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="body_entered" from="Player" to="." method="_on_Player_body_entered"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]

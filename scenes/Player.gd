@@ -3,10 +3,10 @@ extends Area2D
 export var speed = 400
 var screen_size
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	$CollisionShape2D.disabled = false
 
 
 
@@ -28,3 +28,7 @@ func _process(delta):
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 115, screen_size.y)
+
+
+func _on_Player_body_entered(body):
+	print("bug kill")

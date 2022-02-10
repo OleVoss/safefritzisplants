@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/Unbenannt.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Plant.gd" type="Script" id=2]
+[ext_resource path="res://fonts/Mathlete-Bulky.otf" type="DynamicFontData" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 48.0
 height = 44.0
+
+[sub_resource type="DynamicFont" id=2]
+size = 58
+font_data = ExtResource( 3 )
 
 [node name="Plant" type="Area2D"]
 script = ExtResource( 2 )
@@ -20,4 +25,17 @@ texture = ExtResource( 1 )
 position = Vector2( 6, -1 )
 shape = SubResource( 1 )
 
+[node name="HpLabel" type="Label" parent="."]
+margin_left = -2.0
+margin_top = -8.0
+margin_right = 38.0
+margin_bottom = 62.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="body_entered" from="." to="." method="_on_Plant_body_entered"]
+[connection signal="hit" from="." to="." method="_on_Plant_hit"]
