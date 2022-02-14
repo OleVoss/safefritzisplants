@@ -22,6 +22,7 @@ func _process(delta):
 		print(position)
 
 func _on_Plant_body_entered(body):
+	body.queue_free()
 	emit_signal("hit")
 
 func _on_Plant_hit():

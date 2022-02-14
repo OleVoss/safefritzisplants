@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Player.gd" type="Script" id=1]
+[ext_resource path="res://sprites/spray.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
+
+[sub_resource type="Curve" id=2]
+max_value = 892.15
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 892.15 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Player" type="Area2D"]
 collision_layer = 2
@@ -11,15 +16,44 @@ collision_mask = 2
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 30, 30 )
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 60.0
-margin_bottom = 60.0
+margin_left = -30.0
+margin_top = -30.0
+margin_right = 30.0
+margin_bottom = 30.0
 color = Color( 0.933333, 0.172549, 0.172549, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = 30.0
+margin_top = -30.0
+margin_right = 90.0
+margin_bottom = -27.0
+rect_rotation = 89.9999
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Spray" type="CPUParticles2D" parent="."]
+position = Vector2( 45, 0 )
+emitting = false
+amount = 100
+one_shot = true
+lifetime_randomness = 0.33
+local_coords = false
+texture = ExtResource( 2 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 10 )
+spread = 20.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 320.18
+initial_velocity_random = 0.4
+damping = 37.61
+damping_curve = SubResource( 2 )
+scale_amount = 0.1
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

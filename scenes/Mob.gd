@@ -12,9 +12,16 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass	
 
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+
+func _on_Timer_timeout():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	if (rng.randf() < 0.9):
+		linear_velocity = linear_velocity.rotated(1)

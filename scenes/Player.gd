@@ -12,6 +12,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -25,9 +26,16 @@ func _process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 
+	var look_at = velocity.normalized()
+	look_at = cos(look_at.x) + sin(look_at.y)
+	look_at(global_transform.origin + velocity)
+
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 115, screen_size.y)
+
+	if Input.is_action_pressed("start"):
+		$Spray.restart()
 
 
 func _on_Player_body_entered(body):

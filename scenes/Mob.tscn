@@ -8,8 +8,10 @@ radius = 24.0
 height = 8.0
 
 [node name="Mob" type="RigidBody2D" groups=["mobs"]]
+rotation = 1.57079
 collision_layer = 3
 collision_mask = 3
+mass = 0.00102041
 gravity_scale = 0.0
 script = ExtResource( 1 )
 
@@ -23,4 +25,8 @@ shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
